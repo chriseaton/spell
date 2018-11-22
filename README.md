@@ -156,52 +156,62 @@ OUTPUT
 - TO
 
 ### Sections
-- ACTION
-- INPUTS
-- OUTPUT
+A spell operation has 3 sections, all are optional, however, they should appear in the exact order of `INPUTS`, `ACTION`, and finally `OUTPUT`. All sections should have the line below them (six "-" characters).
+
+#### INPUTS
+Inputs describe what items the operation will need before performing actions. You should list any items that you would create, load, or otherwise initialize before performing any actions here. The `INPUTS` acts as a "dictionary" for the reader to reference when reading through the rest of the SPELL operation.
+
+Although you can declare new items at any time within the `ACTION` section, you should limit it as much as possible. 
+
+#### ACTION
+
+#### OUTPUT
 
 ### Operators
-- :    
-    **Usage**: `{Item}[:{Item}...n]`    
-    The colon ":" acts to indicate a child item (sometimes called "properties") of a parent-level item. Colons can be repeated to form a drill-down to a specific item.
+#### :    
+**Usage**: `{Item}[:{Item}...n]`    
+The colon ":" acts to indicate a child item (sometimes called "properties") of a parent-level item. Colons can be repeated to form a drill-down to a specific item.
 
-    **Example**    
-    Below, we indicate that on the "Order" item, there is a child-item "Price" which needs to be set to the value 3.14.
-    ```
-    1. Order:Price = 3.14
-    ```
+**Example**    
+Below, we indicate that on the "Order" item, there is a child-item "Price" which needs to be set to the value 3.14.
+```
+1. Order:Price = 3.14
+```
 
-    **Example**    
-    In the following example, we are indicating the "Won" item under the "Games" item, which is under the "Player" item, needs to be set to the value 56.
-    ```
-    1. Player:Games:Won = 56
-    ```
-- (( ))    
-    **Usage**: `(({Operation}))`    
-    Indicates an operation, such as a programmic function or process, or anoter SPELL script. This operator is optionally used to title each script (appearing on the line before the `INPUTS` statement).   
-    `{Operation}` is the name of the operation.   
+**Example**    
+In the following example, we are indicating the "Won" item under the "Games" item, which is under the "Player" item, needs to be set to the value 56.
+```
+1. Player:Games:Won = 56
+```
 
-    **Example**    
-    In the following example, the item "Orange" will be the result of the "New Fruit" operation.
-    ```
-    1. Orange = ((New Fruit))
-    ```
-- ( )    
-    **Usage**: `({Type|Attribute[,...n]})`    
-    Indicates one or more types or attributes of the item named in a "=" statement (optionally). The meaning of "type" and "attribute" here is used in a general sense, meaning it can be any noun or descriptive keyword(s) - such as a mode of transport, a static type, a style of carpetting, as long as it's short, and descriptive.
-    `{Type|Attribute[, ...n]}` is one or more type/attribute name, seperated by a comma.    
+#### (( ))    
+**Usage**: `(({Operation}))`    
+Indicates an operation, such as a programmic function or process, or anoter SPELL script. This operator is optionally used to title each script (appearing on the line before the `INPUTS` statement).   
+`{Operation}` is the name of the operation.   
 
-    **Example**    
-    In the following example, the `( )` indicates the "Lookups" item is from a "Web Service" type of data source, and uses a GET request method.
-    ```
-    1. Lookups = /api/lookups (Web Service, GET)
-    ```
-- <--    
-    **Usage**: `<-- {Text}`    
-    The arrow indicator is followed by text to describe the current statement or add additional comments or notes.
+**Example**    
+In the following example, the item "Orange" will be the result of the "New Fruit" operation.
+```
+1. Orange = ((New Fruit))
+```
 
-    **Example**    
-    In this example we're commenting on a LOOP THROUGH statement to add clarity for our reader.
-    ```
-    1. LOOP THROUGH Orders EACH CALLED o <-- This means go through all the orders, Bob! 
-    ```
+#### ( )    
+**Usage**: `({Type|Attribute[,...n]})`    
+Indicates one or more types or attributes of the item named in a "=" statement (optionally). The meaning of "type" and "attribute" here is used in a general sense, meaning it can be any noun or descriptive keyword(s) - such as a mode of transport, a static type, a style of carpetting, as long as it's short, and descriptive.
+`{Type|Attribute[, ...n]}` is one or more type/attribute name, seperated by a comma.    
+
+**Example**    
+In the following example, the `( )` indicates the "Lookups" item is from a "Web Service" type of data source, and uses a GET request method.
+```
+1. Lookups = /api/lookups (Web Service, GET)
+```
+
+#### <--    
+**Usage**: `<-- {Text}`    
+The arrow indicator is followed by text to describe the current statement or add additional comments or notes.
+
+**Example**    
+In this example we're commenting on a LOOP THROUGH statement to add clarity for our reader.
+```
+1. LOOP THROUGH Orders EACH CALLED o <-- This means go through all the orders, Bob! 
+```
