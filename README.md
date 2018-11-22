@@ -11,10 +11,14 @@ The language allows the writer to be as descriptive as needed to clearly convey 
 Every SPELL operation (i.e. function, process, etc.) is written to include the `INPUTS`, followed by the `ACTION` steps of the process, and the `OUTPUT`. 
 
 ## Real World
-SPELL is battle-tested in the field, and has a stable core syntax - although it may be refined over time with minor updates.
+SPELL is battle-tested in the field, and has a stable core syntax - although it may be refined over time with minor updates. 
 
-## Example
+Learning to *write* SPELL properly is not difficult and can be picked up with just a small amount of practice. The important thing is that SPELL can be *read* and *interpretted* by anyone capable of forming a logical premise, without learning the formal syntax.
+
+## Try it Out
 The following example describes a process that uses information from two web-service APIs, as well as a loaded customer profile to create an order for Toys starting with the letter "A". It then sends that order to another web-service API call to complete the entire operation.
+
+See if you can understand what it's describing:
 
 ```
 ((Create Order for Toys))
@@ -26,10 +30,10 @@ INPUTS
 3. Shipper = /api/shipping (Web Service)
     WITH 
         - Authentication (Header)
-        - Customer.UID (Parameter)
+        - Customer:UID (Parameter)
     WHERE    
-        - Shipper.shippingMethod = truck    
-        - AND Shipper.country = USA
+        - Shipper:ShippingMethod = truck    
+        - AND Shipper:Country = USA
         - AND Shipper is ((Valid Shipper))
 4. Order = ((New Order))
 
@@ -54,6 +58,8 @@ OUTPUT
 ------
 1. SEND Order TO /api/orders (Web Service)
 ```
+
+Want to see more? Check the our [examples](Examples).
 
 ## Syntax
 
@@ -103,6 +109,10 @@ OUTPUT
 
 
 ### Conventions
+- Named items, types, attributes, or details should always use [PascalCase (e.g UpperCamelCase)](https://en.wikipedia.org/wiki/Camel_case).
+- Keywords should be in ALL CAPS.
+- Sections (INPUT, ACTION, and OUTPUT) may be omitted if not used.
+- Filtering statements (following WITH, WHEN and WHERE keywords) are always expanded using bulletted-lists, all others (action statements) use numbered-lists.
 - Use consistent indents, tabs or four (4) spaces for readability.
 - If a statement is continued on a new line, indent that line from it's parent. Keep the indent level (after the initial indent) for continuations of descriptions, bulleted lists, or numbered lists.
     
@@ -110,8 +120,8 @@ OUTPUT
     ```
     1. WHEN ((Current Date)) is a Monday
         THEN <--Indent
-            - Price = 2.5 <--Initial indent
-            - Smiles = 5 <--No extra indent (bulleted list)
+            1. Price = 2.5 <--Initial indent
+            2. Smiles = 5 <--No extra indent (bulleted list)
     2. Dog = "Cat" <-- Here is a long description, we're 
         always indenting the first continuation but will
         not consider changing the indent level until we 

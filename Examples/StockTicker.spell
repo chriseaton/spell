@@ -1,0 +1,8 @@
+((Get Microsoft Stock Price))
+INPUTS
+------
+1. Quote = https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo (Web Service)
+
+OUTPUT
+------
+1. SEND Quote:Price TO Web Page (HTML)
