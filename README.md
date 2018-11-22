@@ -36,7 +36,7 @@ INPUTS
 ACTION
 ------
 1. LOOP THROUGH Toys EACH CALLED v
-    1. WHEN v PROPERTY Name starts with an "A" 
+    1. WHEN v:Name starts with an "A" 
         THEN 
             1. OrderProduct = ((New Order Product))
             2. OrderProduct:UPC = v:UPC
