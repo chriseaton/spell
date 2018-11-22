@@ -39,12 +39,12 @@ INPUTS
 
 ACTION
 ------
-1. LOOP THROUGH Toys EACH CALLED v
-    1. WHEN v:Name starts with an "A" 
+1. LOOP THROUGH Toys EACH CALLED Toy
+    1. WHEN Toy:Name starts with an "A" 
         THEN 
             1. OrderProduct = ((New Order Product))
-            2. OrderProduct:UPC = v:UPC
-            3. Order:TotalPrice = Order:TotalPrice + v:Price
+            2. OrderProduct:UPC = Toy:UPC
+            3. Order:TotalPrice = Order:TotalPrice + Toy:Price
 2. STOP LOOP
 3. Order:ShippingCode = Order:Code + Shipper:Carrier Name + ((Current Date))
 4. Order:ShippingPrice = ((Calculate Shipping))
@@ -109,7 +109,8 @@ OUTPUT
 
 
 ### Conventions
-- Named items, types, attributes, or details should always use [PascalCase (e.g UpperCamelCase)](https://en.wikipedia.org/wiki/Camel_case).
+- Items should be made up of (mostly) nouns, not abbreviations or similified variable names.
+- Items, types, attributes, or details should always use [PascalCase (e.g UpperCamelCase)](https://en.wikipedia.org/wiki/Camel_case).
 - Keywords should be in ALL CAPS.
 - Sections (INPUT, ACTION, and OUTPUT) may be omitted if not used.
 - Filtering statements (following WITH, WHEN and WHERE keywords) are always expanded using bulletted-lists, all others (action statements) use numbered-lists.
@@ -152,20 +153,21 @@ OUTPUT
 - WHEN
 - WHERE
 - WITH
-- SEND
-- TO
+- SEND TO
 
 ### Sections
 A spell operation has 3 sections, all are optional, however, they should appear in the exact order of `INPUTS`, `ACTION`, and finally `OUTPUT`. All sections should have the line below them (six "-" characters).
 
 #### INPUTS
-Inputs describe what items the operation will need before performing actions. You should list any items that you would create, load, or otherwise initialize before performing any actions here. The `INPUTS` acts as a "dictionary" for the reader to reference when reading through the rest of the SPELL operation.
+The `INPUTS` section describes a number of "items" the operation will need before performing actions. You should list any items that you would create, load, or otherwise initialize before performing any actions. The `INPUTS` acts as a "dictionary" for the reader to reference when reading through the rest of the SPELL operation.
 
 Although you can declare new items at any time within the `ACTION` section, you should limit it as much as possible. 
 
 #### ACTION
+The `ACTION` section spells out the logical steps your operation needs to take in order to result in the desired `OUTPUT`. This can including looping through items (`LOOP THROUGH`), checking conditions (`WHEN`,`THEN`,`OTHERWISE`), and manipulating items (`{Item} = ...`).
 
 #### OUTPUT
+The `OUTPUT` section is similar to the `INPUTS` but describes items being sent out of the operation, this is done using the `SEND [{Item}] TO` keywords on each `OUTPUT` statement. 
 
 ### Operators
 #### :    
